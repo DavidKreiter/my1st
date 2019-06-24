@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 //david you are smart !
+// lets test how to merge
 namespace WindowsFormsApp1
 {
     public partial class AddSearchManualy : Form
