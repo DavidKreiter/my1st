@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RishonimModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Rishonim.dbo.DividersPerNumber' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DividersPerNumber">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="NumberSearched" Type="bigint" />
+          <Property Name="Results" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="text" />
+          <Property Name="quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="Food1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="text" />
+          <Property Name="quantity" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Rishonim.dbo.Searches' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Searches">
+          <Key>
+            <PropertyRef Name="Number" />
+            <PropertyRef Name="Gormim" />
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Name="Number" Type="bigint" Nullable="false" />
+          <Property Name="Gormim" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Function Name="add_search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Number" Type="int" Mode="In" />
+          <Parameter Name="Gormim" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="get_dividers_per_number" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_searches_count_equal_number" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_searches_from_date" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ConterOverTwenty" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="get_searches_over_Twenty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="RishonimModelStoreContainer">
+          <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Food1" EntityType="Self.Food1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DividersPerNumber" EntityType="Self.DividersPerNumber" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DividersPerNumber].[NumberSearched] AS [NumberSearched], 
+    [DividersPerNumber].[Results] AS [Results], 
+    [DividersPerNumber].[ID] AS [ID]
+    FROM [dbo].[DividersPerNumber] AS [DividersPerNumber]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Searches" EntityType="Self.Searches" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Searches].[Number] AS [Number], 
+    [Searches].[Gormim] AS [Gormim], 
+    [Searches].[ID] AS [ID], 
+    [Searches].[Timestamp] AS [Timestamp]
+    FROM [dbo].[Searches] AS [Searches]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RishonimModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="quantity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Food1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="quantity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DividersPerNumber">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="NumberSearched" Type="Int64" />
+          <Property Name="Results" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Search">
+          <Key>
+            <PropertyRef Name="Number" />
+            <PropertyRef Name="Gormim" />
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Name="Number" Type="Int64" Nullable="false" />
+          <Property Name="Gormim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="RishonimEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Foods" EntityType="Self.Food" />
+          <EntitySet Name="Food1" EntityType="Self.Food1" />
+          <EntitySet Name="DividersPerNumbers" EntityType="Self.DividersPerNumber" />
+          <EntitySet Name="Searches" EntityType="Self.Search" />
+          <FunctionImport Name="add_search">
+            <Parameter Name="Number" Mode="In" Type="Int32" />
+            <Parameter Name="Gormim" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="get_dividers_per_number" ReturnType="Collection(RishonimModel.get_dividers_per_number_Result)" />
+          <FunctionImport Name="get_searches_count_equal_number" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="get_searches_from_date" ReturnType="Collection(RishonimModel.get_searches_from_date_Result)">
+            <Parameter Name="ConterOverTwenty" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="get_searches_over_Twenty" ReturnType="Collection(RishonimModel.get_searches_over_Twenty_Result)" />
+        </EntityContainer>
+        <ComplexType Name="get_dividers_per_number_Result">
+          <Property Type="Int64" Name="NumberSearched" Nullable="true" />
+          <Property Type="Int32" Name="Results" Nullable="true" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="get_searches_from_date_Result">
+          <Property Type="Int64" Name="Number" Nullable="false" />
+          <Property Type="String" Name="Gormim" Nullable="false" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="get_searches_over_Twenty_Result">
+          <Property Type="Int64" Name="Number" Nullable="false" />
+          <Property Type="String" Name="Gormim" Nullable="false" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RishonimModelStoreContainer" CdmEntityContainer="RishonimEntities">
+          <EntitySetMapping Name="Foods">
+            <EntityTypeMapping TypeName="RishonimModel.Food">
+              <MappingFragment StoreEntitySet="Food">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Food1">
+            <EntityTypeMapping TypeName="RishonimModel.Food1">
+              <MappingFragment StoreEntitySet="Food1">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DividersPerNumbers">
+            <EntityTypeMapping TypeName="RishonimModel.DividersPerNumber">
+              <MappingFragment StoreEntitySet="DividersPerNumber">
+                <ScalarProperty Name="NumberSearched" ColumnName="NumberSearched" />
+                <ScalarProperty Name="Results" ColumnName="Results" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Searches">
+            <EntityTypeMapping TypeName="RishonimModel.Search">
+              <MappingFragment StoreEntitySet="Searches">
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Gormim" ColumnName="Gormim" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="add_search" FunctionName="RishonimModel.Store.add_search" />
+          <FunctionImportMapping FunctionImportName="get_dividers_per_number" FunctionName="RishonimModel.Store.get_dividers_per_number">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RishonimModel.get_dividers_per_number_Result">
+                <ScalarProperty Name="NumberSearched" ColumnName="NumberSearched" />
+                <ScalarProperty Name="Results" ColumnName="Results" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_searches_count_equal_number" FunctionName="RishonimModel.Store.get_searches_count_equal_number" />
+          <FunctionImportMapping FunctionImportName="get_searches_from_date" FunctionName="RishonimModel.Store.get_searches_from_date">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RishonimModel.get_searches_from_date_Result">
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Gormim" ColumnName="Gormim" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_searches_over_Twenty" FunctionName="RishonimModel.Store.get_searches_over_Twenty">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RishonimModel.get_searches_over_Twenty_Result">
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Gormim" ColumnName="Gormim" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
