@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+//david you are smart !
 namespace WindowsFormsApp1
 {
     public partial class AddSearchManualy : Form
